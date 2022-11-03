@@ -6,6 +6,8 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+import time
+from datetime import datetime
 
 path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 sys.path.insert(0, path)
@@ -147,9 +149,11 @@ def process_reward_data(
 
     plt.tight_layout()
 
+    now = datetime.now()
+    now = now.strftime("%d-%m-%y_%H-%M")
     if save_figs:
-        plt.savefig(reward_data.reward_plots_dir / ("rewards_plot.png"))
-        plt.savefig(reward_data.reward_plots_dir / ("rewards_plot.eps"), format="eps")
+        plt.savefig(reward_data.reward_plots_dir / (f"rewards_plot{now}.png"))
+        plt.savefig(reward_data.reward_plots_dir / (f"rewards_plot{now}.eps"), format="eps")
 
     if show:
         plt.show()
